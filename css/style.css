@@ -1,0 +1,369 @@
+/* ==============================
+    DESIGN SYSTEM - VARIÁVEIS
+============================== */
+:root {
+  /* Paleta de 8 cores */
+  --cor-primaria-1: #0077b6;   
+  --cor-primaria-2: #023e8a;   
+  --cor-secundaria: #ffb703;   
+  --cor-terciaria: #90e0ef;    
+  --neutra-clara: #f2f6f9;
+  --neutra-meio: #f8f9fb;
+  --neutra-escura: #222222;
+  --sucesso: #2ecc71;
+  --erro: #e63946;
+
+  /* Tipografia */
+  --font-sans: 'Arial', sans-serif;
+  --font-title: 'Arial Black', sans-serif;
+  --fs-1: 2.4rem;
+  --fs-2: 2rem;
+  --fs-3: 1.6rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  /* Espaçamentos */
+  --s-8: 8px;
+  --s-16: 16px;
+  --s-24: 24px;
+  --s-32: 32px;
+  --s-48: 48px;
+  --s-64: 64px;
+
+  /* Layout */
+  --max-width: 1200px;
+  --radius: 10px;
+  --elevation-1: 0 2px 6px rgba(2,46,78,0.06);
+  --elevation-2: 0 6px 18px rgba(2,46,78,0.12);
+}
+
+/* ==============================
+    RESET E BASE
+============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--neutra-clara) 0%, #ffffff 100%);
+  color: var(--neutra-escura);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* ==============================
+    CABEÇALHO E NAVEGAÇÃO
+============================== */
+header {
+  background: linear-gradient(90deg, var(--cor-primaria-1), var(--cor-primaria-2));
+  color: #fff;
+  padding: var(--s-16) 0;
+  text-align: center;
+  box-shadow: var(--elevation-1);
+  position: relative;
+}
+
+header h1 {
+  font-family: var(--font-title);
+  font-size: var(--fs-1);
+  margin-bottom: 6px;
+}
+
+/* ==============================
+   MENU PRINCIPAL + DROPDOWN
+============================== */
+nav {
+  margin-top: 8px;
+  position: relative;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--s-24);
+  align-items: center;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: var(--s-8) var(--s-16);
+  transition: background 0.3s, color 0.3s;
+  border-radius: 4px;
+}
+
+nav ul li a:hover,
+nav ul li a.ativo {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Submenu dropdown */
+nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  background: var(--cor-primaria-2);
+  border-radius: 6px;
+  padding: var(--s-8) 0;
+  min-width: 200px;
+  box-shadow: var(--elevation-2);
+  z-index: 10;
+}
+
+nav ul li:hover ul {
+  display: flex;
+}
+
+nav ul li ul li a {
+  padding: var(--s-8) var(--s-16);
+  color: white;
+  font-weight: normal;
+}
+
+nav ul li ul li a:hover {
+  background: var(--cor-terciaria);
+  color: var(--neutra-escura);
+}
+
+/* Menu hambúrguer (mobile) */
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  right: var(--s-16);
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.menu-hamburguer span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* ==============================
+    RESPONSIVIDADE DO MENU
+============================== */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--cor-primaria-2);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: var(--s-16) 0;
+  }
+
+  nav ul.ativo {
+    display: flex;
+  }
+
+  nav ul li ul {
+    position: static;
+    background: var(--cor-primaria-1);
+  }
+
+  .menu-hamburguer {
+    display: flex;
+  }
+}
+
+/* ==============================
+    LAYOUT PRINCIPAL (GRID)
+============================== */
+main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--s-16);
+  max-width: var(--max-width);
+  margin: var(--s-32) auto;
+  padding: 0 var(--s-16);
+}
+
+section {
+  grid-column: 1 / -1;
+  background: #fff;
+  padding: var(--s-24);
+  border-radius: var(--radius);
+  box-shadow: var(--elevation-1);
+  margin-bottom: var(--s-24);
+}
+
+section h2 {
+  font-size: var(--fs-2);
+  color: var(--cor-primaria-2);
+  margin-bottom: var(--s-16);
+}
+
+/* ==============================
+    CARDS DE PROJETOS
+============================== */
+/* Grade de cards */
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--s-24);
+}
+
+.card {
+  margin-bottom: 0;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(2,46,78,0.12);
+}
+.card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: var(--s-16);
+}
+
+
+.card-body { padding: var(--s-16); }
+.card h3 { font-size: var(--fs-3); margin-bottom: 8px; color: var(--cor-primaria-2); }
+.card p { color: #444; line-height: 1.45; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: var(--fs-small);
+}
+#alimentar .badge { background: linear-gradient(90deg, #ff8a65, #ffb703); }
+#futuro .badge { background: linear-gradient(90deg, #6fcf97, #2ecc71); }
+#verde .badge { background: linear-gradient(90deg, #56ccf2, #90e0ef); }
+
+/* ==============================
+    FORMULÁRIO + ALERTA
+============================== */
+form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--s-12);
+}
+fieldset {
+  grid-column: 1 / -1;
+  border: 2px solid rgba(2,46,78,0.06);
+  padding: var(--s-16);
+  border-radius: 8px;
+  background: linear-gradient(180deg,#fff,#fbfdff);
+}
+label {
+  display: block;
+  font-weight: 700;
+  margin-top: 8px;
+  color: var(--neutra-escura);
+}
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #d6dbe0;
+  border-radius: 6px;
+  font-size: var(--fs-body);
+  transition: box-shadow .18s, border-color .16s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cor-terciaria);
+  box-shadow: 0 0 8px rgba(144,224,239,0.4);
+}
+
+/* Botão */
+.botao-enviar {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, var(--cor-secundaria), var(--cor-primaria-1));
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.botao-enviar:hover { transform: translateY(-3px); box-shadow: var(--elevation-2); }
+
+/* Alerta centralizado e retangular */
+#alerta .alert {
+  display: block;          /* garante que o elemento ocupe linha inteira */
+  width: 80%;              /* largura do retângulo */
+  max-width: 500px;        /* não estica demais em telas grandes */
+  padding: 12px 40px;      /* deixa mais largo que alto */
+  margin: 20px auto;       /* centralizado */
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  animation: fadeIn 0.4s ease;
+}
+
+.alert-sucesso { background: linear-gradient(90deg, #28d09b, var(--sucesso)); }
+.alert-erro { background: linear-gradient(90deg, #ff7b7b, var(--erro)); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ==============================
+    RODAPÉ
+============================== */
+footer {
+  background: linear-gradient(90deg, var(--cor-primaria-2), var(--cor-primaria-1));
+  color: white;
+  text-align: center;
+  padding: var(--s-16) 0;
+  font-size: var(--fs-small);
+  margin-top: var(--s-24);
+  box-shadow: var(--elevation-1);
+}
+
+/* ==============================
+    RESPONSIVIDADE GERAL
+============================== */
+@media (max-width: 1200px) {
+  main { max-width: 1000px; }
+}
+@media (max-width: 1024px) {
+  main { grid-template-columns: repeat(8, 1fr); }
+}
+@media (max-width: 768px) {
+  main { grid-template-columns: repeat(6, 1fr); }
+}
+@media (max-width: 480px) {
+  main { grid-template-columns: repeat(4, 1fr); }
+  header h1 { font-size: 1.6rem; }
+  .card img { height: 180px; }
+}
+@media (max-width: 360px) {
+  main { grid-template-columns: repeat(2, 1fr); }
+  .card img { height: 140px; }
+}
+
+/* Utilitários */
+.text-center { text-align: center; }
+.small { font-size: var(--fs-small); }
